@@ -1,8 +1,9 @@
+// components/bot/BotExecutor.tsx
 "use client";
 
 import React, { useState, useEffect } from 'react';
 import MultiStepBotConfig from './MultiStepBotConfig';
-import { getSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import Modal from '@/components/Modal';
 
 interface BotExecutorProps {
@@ -14,6 +15,7 @@ interface BotExecutorProps {
 const PYTHON_BACKEND_URL = process.env.NODE_ENV === "development" ? process.env.PYTHON_BOT_BACKEND_URL : process.env.PYTHON_BOT_BACKEND_URL
 
 const BotExecutor: React.FC<BotExecutorProps> = ({ activeTrades, fetchTrades, fetchInvestmentStatus }) => {
+  const { data: session } = useSession();
   const [isRunning, setIsRunning] = useState(activeTrades > 0);
   const [showModal, setShowModal] = useState(false);
   const [taskId, setTaskId] = useState<string | null>(null);
@@ -30,8 +32,6 @@ const BotExecutor: React.FC<BotExecutorProps> = ({ activeTrades, fetchTrades, fe
   };
 
   const handleFormSubmit = async (data: any) => {
-    
-    const session = await getSession();
     if (!session || !session.user) {
       console.error("User not authenticated");
       return;
@@ -98,7 +98,6 @@ const BotExecutor: React.FC<BotExecutorProps> = ({ activeTrades, fetchTrades, fe
   };
 
   const handleStopBot = async () => {
-    const session = await getSession();
     if (!session || !session.user) {
       console.error("User not authenticated");
       return;
@@ -166,4 +165,4 @@ const BotExecutor: React.FC<BotExecutorProps> = ({ activeTrades, fetchTrades, fe
   );
 };
 
-export default async BotExecutor;
+export default BotExecutor;
