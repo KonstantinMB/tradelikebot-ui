@@ -40,6 +40,10 @@ export const authOptions: NextAuthOptionsExtended = {
       }
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      // Ensure the redirect URL is absolute and matches the environment
+      return url.startsWith(baseUrl) ? url : baseUrl;
+    },
   },
   session: {
     strategy: "jwt",
