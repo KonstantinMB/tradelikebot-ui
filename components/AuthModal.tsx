@@ -15,7 +15,7 @@ interface AuthModalProps {
 
 const AuthModal = ({ isOpen, onClose, priceId }: AuthModalProps) => {
   const handleSignIn = () => {
-    const callbackUrl = `${window.location.origin}?redirectToCheckout=true&priceId=${priceId}`;
+    const callbackUrl = `${window.location.origin}/pricing?redirectToCheckout=true&priceId=${priceId}`;
     signIn("google", { callbackUrl });
   };
   return (

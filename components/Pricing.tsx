@@ -18,7 +18,7 @@ const Pricing = () => {
       setShowModal(true);
     }
   }, [searchParams]);
-  
+
   return (
     <section className="bg-base-200 overflow-hidden" id="pricing">
       <div className={`py-24 px-8 max-w-5xl mx-auto ${showModal ? 'blur-background' : ''}`}>

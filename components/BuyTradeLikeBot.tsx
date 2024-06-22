@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import apiClient from "@/libs/api";
-import { useSession, signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import config from "@/config";
 import AuthModal from "./AuthModal";
