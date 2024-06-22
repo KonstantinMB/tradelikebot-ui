@@ -44,7 +44,7 @@ const BuyTradeLikeBot = ({
           priceId,
           successUrl: successUrl,
           cancelUrl: window.location.href,
-          mode,
+          mode: "payment",
         }
       );
 
