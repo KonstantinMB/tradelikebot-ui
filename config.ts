@@ -61,7 +61,7 @@ const config = {
   },
   auth: {
     loginUrl: "/api/auth/signin",
-    callbackUrl: "/",
+    callbackUrl: "/pricing",
   },
 } as ConfigProps;
 

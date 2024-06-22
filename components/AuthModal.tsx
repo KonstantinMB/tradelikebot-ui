@@ -5,6 +5,7 @@ import { Fragment } from "react";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import googleLogo from "@/images/google-logo.png";
+import config from "@/config";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -14,7 +15,7 @@ interface AuthModalProps {
 
 const AuthModal = ({ isOpen, onClose, priceId }: AuthModalProps) => {
   const handleSignIn = () => {
-    signIn("google", { callbackUrl: `${window.location.href}?redirectToCheckout=true&priceId=${priceId}` });
+    signIn(undefined, { callbackUrl: `${config.auth.callbackUrl}?redirectToCheckout=true&priceId=${priceId}` });
   };
   return (
     <Transition appear show={isOpen} as={Fragment}>
