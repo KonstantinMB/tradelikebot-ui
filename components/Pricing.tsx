@@ -6,11 +6,15 @@ import config from "@/config";
 import BuyTradeLikeBot from "@/components/BuyTradeLikeBot";
 import ButtonLead from "@/components/ButtonLead";
 import Modal from "@/components/Modal";
+import { useSession } from "next-auth/react";
+import axios from "axios";
 
 const Pricing = () => {
   const [showModal, setShowModal] = useState(false);
+  const [hasAccess, setHasAccess] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     // Check if the query param exists to show the modal
@@ -18,6 +22,30 @@ const Pricing = () => {
       setShowModal(true);
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    const checkUserAccess = async () => {
+      if (status === "authenticated" && session?.user?.id) {
+        try {
+          const response = await axios.post(`/api/check-access`);
+          const { hasAccess } = response.data;
+
+          if (hasAccess) {
+            setHasAccess(true);
+            router.push("/bot/dashboard");
+          }
+        } catch (error) {
+          console.error("Error checking user access:", error);
+        }
+      }
+    };
+
+    checkUserAccess();
+  }, [status, session, router]);
+
+  if (hasAccess) {
+    return null; // Render nothing if redirecting to dashboard
+  }
 
   return (
     <section className="bg-base-200 overflow-hidden" id="pricing">
