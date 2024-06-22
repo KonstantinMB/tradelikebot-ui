@@ -43,8 +43,6 @@ const MultiStepBotConfig = ({ onSubmit, onClose }: { onSubmit: (data: any) => vo
       ...formData,
       order_size: parseFloat(formData.quantity.toString()) || 0 // Ensure order_size is a float
     };
-
-    console.log("Submitting form with data:", finalData); // Log the form data
     onSubmit(finalData);
   };
 

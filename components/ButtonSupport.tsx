@@ -7,6 +7,7 @@ import config from "@/config";
 const ButtonSupport = () => {
   const handleClick = () => {
     if (config.crisp?.id) {
+      
       Crisp.chat.show();
       Crisp.chat.open();
     } else if (config.mail?.supportEmail) {

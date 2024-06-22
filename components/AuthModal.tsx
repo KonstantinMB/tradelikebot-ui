@@ -14,11 +14,8 @@ interface AuthModalProps {
 
 const AuthModal = ({ isOpen, onClose, priceId }: AuthModalProps) => {
   const handleSignIn = () => {
-    signIn("google", {
-      callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/callback/google?redirectToCheckout=true&priceId=${priceId}`,
-    });
+    signIn("google", { callbackUrl: `${window.location.href}?redirectToCheckout=true&priceId=${priceId}` });
   };
-
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={onClose}>
@@ -69,7 +66,10 @@ const AuthModal = ({ isOpen, onClose, priceId }: AuthModalProps) => {
                 </div>
 
                 <div className="mt-4 flex justify-end">
-                  <button className="btn btn-ghost" onClick={onClose}>
+                  <button
+                    className="btn btn-ghost"
+                    onClick={onClose}
+                  >
                     Close
                   </button>
                 </div>

@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import EmailProvider from "next-auth/providers/email";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import config from "@/config";
 import connectMongo from "./mongo";
@@ -40,17 +39,13 @@ export const authOptions: NextAuthOptionsExtended = {
       }
       return session;
     },
-    async redirect({ url, baseUrl }) {
-      // Ensure the redirect URL is absolute and matches the environment
-      return url.startsWith(baseUrl) ? url : baseUrl;
-    },
   },
   session: {
     strategy: "jwt",
   },
   theme: {
     brandColor: config.colors.main,
-    logo: `https://${config.domainName}/logoAndName.png`,
+    logo: `https://${config.domainName}/icon.png`,
   },
 };
 

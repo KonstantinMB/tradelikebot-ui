@@ -25,7 +25,7 @@ const BuyTradeLikeBot = ({
   const savedPriceId = searchParams.get("priceId");
   const successUrl =
     process.env.NODE_ENV === "development"
-      ? "http://localhost:3000/bot/dashboard"
+      ? "http://" + config.domainName + "/bot/dashboard"
       : "https://" + config.domainName + "/bot/dashboard";
 
   useEffect(() => {

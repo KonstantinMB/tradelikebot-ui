@@ -5,9 +5,9 @@ const config = {
   appName: "TradingLikeBot",
   appDescription:
     "Automate Your Crypto Trading for Maximum Profit. Maximize your profits and minimize risks by leaving emotional decisions behind",
-  domainName: "tradinglikebot.com",
+  domainName: process.env.NEXT_PUBLIC_DOMAIN_NAME,
   crisp: {
-    id: process.env.CRISP_ID,
+    id: process.env.NEXT_PUBLIC_CRISP_ID,
     onlyShowOnRoutes: ["/"],
   },
   stripe: {
@@ -17,8 +17,8 @@ const config = {
         // REQUIRED — we use this to find the plan in the webhook (for instance if you want to update the user's credits based on the plan)
         priceId:
           process.env.NODE_ENV === "development"
-            ? process.env.STRIPE_CRYPTO_BOT_PRICE_ID_DEV
-            : process.env.STRIPE_CRYPTO_BOT_PRICE_ID_PROD,
+            ? process.env.NEXT_PUBLIC_STRIPE_CRYPTO_BOT_PRICE_ID_DEV
+            : process.env.NEXT_PUBLIC_STRIPE_CRYPTO_BOT_PRICE_ID_PROD,
         //  REQUIRED - Name of the plan, displayed on the pricing page
         name: "Starter",
         // A friendly description of the plan, displayed on the pricing page. Tip: explain why this plan and not others
@@ -52,7 +52,7 @@ const config = {
     ],
   },
   mail: {
-    supportEmail: process.env.SUPPORT_EMAIL
+    supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL
   },
   colors: {
     // REQUIRED — The DaisyUI theme to use (added to the main layout.js). Leave blank for default (light & dark mode). If you any other theme than light/dark, you need to add it in config.tailwind.js in daisyui.themes.

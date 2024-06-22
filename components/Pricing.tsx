@@ -18,15 +18,7 @@ const Pricing = () => {
       setShowModal(true);
     }
   }, [searchParams]);
-
-  const closeModal = () => {
-    setShowModal(false);
-    // Remove the query param from the URL after showing the modal
-    const newUrl = new URL(window.location.href);
-    newUrl.searchParams.delete("showPurchaseModal");
-    router.replace(newUrl.toString());
-  };
-
+  
   return (
     <section className="bg-base-200 overflow-hidden" id="pricing">
       <div className={`py-24 px-8 max-w-5xl mx-auto ${showModal ? 'blur-background' : ''}`}>
@@ -88,8 +80,8 @@ const Pricing = () => {
                 </div>
                 {plan.features && (
                   <ul className="space-y-2.5 leading-relaxed text-base flex-1">
-                    {plan.features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-2">
+                    {plan.features.map((feature, index) => (
+                      <li key={index} className="flex items-center gap-2">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
@@ -102,21 +94,20 @@ const Pricing = () => {
                             clipRule="evenodd"
                           />
                         </svg>
-
-                        <span>{feature.name} </span>
+                        <span>{feature.name}</span>
                       </li>
                     ))}
                   </ul>
                 )}
-                  <div>
-                    <div className="space-y-2 flex justify-center items-center">
-                        <BuyTradeLikeBot priceId={plan.priceId} />
-                    </div>
-                    <p className="flex items-center pt-2 justify-center gap-2 text-sm text-center text-base-content/80 font-medium relative">
-                          Pay once. Access forever.
-                    </p>
+                <div>
+                  <div className="space-y-2 flex justify-center items-center">
+                    <BuyTradeLikeBot priceId={plan.priceId} />
                   </div>
+                  <p className="flex items-center pt-2 justify-center gap-2 text-sm text-center text-base-content/80 font-medium relative">
+                    Pay once. Access forever.
+                  </p>
                 </div>
+              </div>
             </div>
           ))}
           <div className="relative w-full max-w-lg">
