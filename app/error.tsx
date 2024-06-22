@@ -131,7 +131,7 @@ export default function Error({
         Oops! Something went wrong 🥲
       </p>
       <p className="text-sm md:text-base text-gray-600">
-        "To err is human, but to really foul things up you need a computer." - Paul R. Ehrlich
+        &quot;To err is human, but to really foul things up you need a computer.&quot; - Paul R. Ehrlich
       </p>
       <p className="text-red-500">{error?.message}</p>
 
@@ -169,7 +169,7 @@ export default function Error({
         </Link>
       </div>
       <p className="text-sm md:text-base text-gray-600 mt-4">
-        If you need assistance, don't hesitate to chat with our support team!
+        If you need assistance, don&apos;t hesitate to chat with our support team!
       </p>
     </div>
   );
