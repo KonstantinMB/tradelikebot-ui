@@ -24,6 +24,7 @@ const ButtonLead = ({ extraStyle }: { extraStyle?: string }) => {
       setEmail("");
       setIsDisabled(true);
     } catch (error) {
+      console.log("An Internal Issue Occured While Saving User's Email!");
     } finally {
       setIsLoading(false);
     }

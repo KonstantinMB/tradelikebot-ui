@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -7,7 +6,6 @@ import logo from '@/images/logo.png';
 import ButtonAccount from './ButtonAccount';
 
 const Navbar = () => {
-  
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -24,13 +22,13 @@ const Navbar = () => {
                 alt="TradeLikeBot logo"
                 src={logo}
                 fetchPriority="high"
-                width={112}  // Increase the logo size
-                height={112}  // Increase the logo size
+                width={112}
+                height={112}
                 decoding="async"
-                className="mr-2 w-[112px] sm:w-[112px]" // Update the width
+                className="mr-2 w-[112px] sm:w-[112px]"
                 style={{ color: 'transparent' }}
               />
-              <span className="font-semibold text-white text-[16px] sm:text-[20px]">TradeLikeBot</span> {/* Smaller text */}
+              <span className="font-semibold text-white text-[16px] sm:text-[20px]">TradeLikeBot</span>
             </div>
           </a>
         </Link>
@@ -43,19 +41,46 @@ const Navbar = () => {
           </svg>
         </button>
       </div>
-      <div className={`justify-center gap-12 items-center font-semibold text-base ${isOpen ? 'flex' : 'hidden'} lg:flex`}> {/* Increase font size */}
-        <Link href="/#features" passHref legacyBehavior>
-          <a className="link no-underline hover:text-slate-100" title="Features">Features</a>
-        </Link>
-        <Link href="/pricing" passHref legacyBehavior>
-          <a className="link no-underline hover:text-slate-100" title="Pricing">Pricing</a>
-        </Link>
-        <Link href="https://konstantinmb.medium.com/" passHref legacyBehavior>
-          <a className="link no-underline hover:text-slate-100" title="Blogs">Blogs</a>
-        </Link>
+      <div className={`fixed inset-0 z-50 bg-base-100 transition-transform transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} lg:static lg:inset-auto lg:transform-none lg:flex justify-center gap-12 items-center font-semibold text-base`}>
+        <div className="flex items-center justify-between px-8 pt-8 lg:hidden">
+          <Link href="/" passHref legacyBehavior>
+            <a className="flex items-center gap-2 shrink-0" title="TradeLikeBot homepage">
+              <div className="flex items-center">
+                <Image
+                  alt="TradeLikeBot logo"
+                  src={logo}
+                  fetchPriority="high"
+                  width={112}
+                  height={112}
+                  decoding="async"
+                  className="mr-2 w-[112px] sm:w-[112px]"
+                  style={{ color: 'transparent' }}
+                />
+                <span className="font-semibold text-white text-[16px] sm:text-[20px]">TradeLikeBot</span>
+              </div>
+            </a>
+          </Link>
+          <button type="button" className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5" onClick={toggleMenu}>
+            <span className="sr-only">Close main menu</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-base-content">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div className="flex flex-col lg:flex-row items-center gap-8 p-8 lg:p-0 lg:flex-1 lg:justify-center">
+          <Link href="/#features" passHref legacyBehavior>
+            <a className="link no-underline hover:text-slate-100" title="Features" onClick={toggleMenu}>Features</a>
+          </Link>
+          <Link href="/pricing" passHref legacyBehavior>
+            <a className="link no-underline hover:text-slate-100" title="Pricing" onClick={toggleMenu}>Pricing</a>
+          </Link>
+          <Link href="https://konstantinmb.medium.com/" passHref legacyBehavior>
+            <a className="link no-underline hover:text-slate-100" title="Blogs" onClick={toggleMenu}>Blogs</a>
+          </Link>
+        </div>
       </div>
       <div className="hidden lg:flex lg:justify-end lg:flex-1">
-      <ButtonAccount />
+        <ButtonAccount />
       </div>
     </nav>
   );
