@@ -15,7 +15,8 @@ interface AuthModalProps {
 
 const AuthModal = ({ isOpen, onClose, priceId }: AuthModalProps) => {
   const handleSignIn = () => {
-    signIn(undefined, { callbackUrl: `${config.auth.callbackUrl}?redirectToCheckout=true&priceId=${priceId}` });
+    const callbackUrl = `${window.location.origin}?redirectToCheckout=true&priceId=${priceId}`;
+    signIn("google", { callbackUrl });
   };
   return (
     <Transition appear show={isOpen} as={Fragment}>

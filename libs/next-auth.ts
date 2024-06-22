@@ -17,6 +17,11 @@ export const authOptions: NextAuthOptionsExtended = {
       // Follow the "Login with Google" tutorial to get your credentials
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
+      authorization: {
+        params: {
+          redirect_uri: `${process.env.NEXTAUTH_URL}/api/auth/callback/google`,
+        },
+      },
       async profile(profile) {
         return {
           id: profile.sub,
