@@ -12,7 +12,7 @@ interface BotExecutorProps {
   fetchInvestmentStatus: () => void;
 }
 
-const PYTHON_BACKEND_URL = process.env.NODE_ENV === "development" ? process.env.NEXT_PUBLIC_PYTHON_BACKEND_URL : process.env.NEXT_PUBLIC_PYTHON_BACKEND_URL
+const API_BASE_URL = process.env.NEXT_PUBLIC_PYTHON_BACKEND_URL;
 
 const BotExecutor: React.FC<BotExecutorProps> = ({ activeTrades, fetchTrades, fetchInvestmentStatus }) => {
   const { data: session } = useSession();
@@ -48,7 +48,7 @@ const BotExecutor: React.FC<BotExecutorProps> = ({ activeTrades, fetchTrades, fe
     };
 
     try {
-      const response = await fetch(PYTHON_BACKEND_URL + '/api/bot/trades', {
+      const response = await fetch(`${API_BASE_URL}/api/bot/trades`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ const BotExecutor: React.FC<BotExecutorProps> = ({ activeTrades, fetchTrades, fe
     }
 
     try {
-      const response = await fetch(PYTHON_BACKEND_URL + '/api/bot/stop', {
+      const response = await fetch(`${API_BASE_URL}/api/bot/stop`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
