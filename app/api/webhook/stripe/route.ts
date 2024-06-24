@@ -13,19 +13,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
-// This is where we receive Stripe webhook events
-// By default, it'll store the user in the database
 export async function POST(req: NextRequest) {
   await connectMongo();
 
-  const body = await req.text();
-
+  const body = await req.clone().text();
   const signature = headers().get("stripe-signature");
 
-  let eventType;
   let event;
-
-  // verify Stripe event is legit
   try {
     event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
   } catch (err) {
@@ -33,12 +27,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: err.message }, { status: 400 });
   }
 
-  eventType = event.type;
-
+  const eventType = event.type;
   try {
     switch (eventType) {
       case "checkout.session.completed": {
-        // ✅ Grant access to the product
         const stripeObject: Stripe.Checkout.Session = event.data
           .object as Stripe.Checkout.Session;
 
@@ -51,24 +43,18 @@ export async function POST(req: NextRequest) {
 
         if (!plan) break;
 
-        const customer = (await stripe.customers.retrieve(
-          customerId as string
-        )) as Stripe.Customer;
+        const customer = (await stripe.customers.retrieve(customerId as string)) as Stripe.Customer;
 
         let user;
-
-        // Get or create the user. userId is normally pass in the checkout session (clientReferenceID) to identify the user when we get the webhook event
         if (userId) {
           user = await User.findById(userId);
         } else if (customer.email) {
           user = await User.findOne({ email: customer.email });
-
           if (!user) {
             user = await User.create({
               email: customer.email,
               name: customer.name,
             });
-
             await user.save();
           }
         } else {
@@ -76,72 +62,18 @@ export async function POST(req: NextRequest) {
           throw new Error("No user found");
         }
 
-        // Update user data + Grant user access to your product. It's a boolean in the database, but could be a number of credits, etc...
         user.priceId = priceId;
         user.customerId = customerId;
         user.hasAccess = true;
         await user.save();
 
-        // Extra: send email with user link, product page, etc...
-        // try {
-        //   await sendEmail(...);
-        // } catch (e) {
-        //   console.error("Email issue:" + e?.message);
-        // }
-
         break;
       }
 
-      case "checkout.session.expired": {
-        // User didn't complete the transaction
-        break;
-      }
-
-      case "customer.subscription.updated": {
-        break;
-      }
-
-      case "customer.subscription.deleted": {
-        // ❌ Revoke access to the product
-        const stripeObject: Stripe.Subscription = event.data
-          .object as Stripe.Subscription;
-
-        const subscription = await stripe.subscriptions.retrieve(
-          stripeObject.id
-        );
-        const user = await User.findOne({ customerId: subscription.customer });
-
-        user.hasAccess = false;
-        await user.save();
-
-        break;
-      }
-
-      case "invoice.paid": {
-        // ✅ Grant access to the product
-        const stripeObject: Stripe.Invoice = event.data
-          .object as Stripe.Invoice;
-
-        const priceId = stripeObject.lines.data[0].price.id;
-        const customerId = stripeObject.customer;
-
-        const user = await User.findOne({ customerId });
-
-        if (user.priceId !== priceId) break;
-
-        // Grant user access to your product.
-        user.hasAccess = true;
-        await user.save();
-
-        break;
-      }
-
-      case "invoice.payment_failed":
-        // ❌ Should revoke access to the product
-        break;
+      // Handle other event types...
 
       default:
-      // Unhandled event types
+        console.warn(`Unhandled event type ${eventType}`);
     }
   } catch (e) {
     console.error("Stripe error: ", e.message);
