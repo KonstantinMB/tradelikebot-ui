@@ -12,7 +12,7 @@ interface BotExecutorProps {
   fetchInvestmentStatus: () => void;
 }
 
-const PYTHON_BACKEND_URL = process.env.NODE_ENV === "development" ? process.env.PYTHON_BOT_BACKEND_URL : process.env.PYTHON_BOT_BACKEND_URL
+const PYTHON_BACKEND_URL = process.env.NODE_ENV === "development" ? process.env.NEXT_PUBLIC_PYTHON_BACKEND_URL : process.env.NEXT_PUBLIC_PYTHON_BACKEND_URL
 
 const BotExecutor: React.FC<BotExecutorProps> = ({ activeTrades, fetchTrades, fetchInvestmentStatus }) => {
   const { data: session } = useSession();

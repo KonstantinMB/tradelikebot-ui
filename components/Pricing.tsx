@@ -6,46 +6,28 @@ import config from "@/config";
 import BuyTradeLikeBot from "@/components/BuyTradeLikeBot";
 import ButtonLead from "@/components/ButtonLead";
 import Modal from "@/components/Modal";
-import { useSession } from "next-auth/react";
-import axios from "axios";
 
 const Pricing = () => {
   const [showModal, setShowModal] = useState(false);
-  const [hasAccess, setHasAccess] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { data: session, status } = useSession();
 
   useEffect(() => {
     // Check if the query param exists to show the modal
-    if (searchParams && searchParams.get("showPurchaseModal")) {
+    if (searchParams.get("showPurchaseModal")) {
       setShowModal(true);
     }
-  }, [searchParams]);
 
-  useEffect(() => {
-    const checkUserAccess = async () => {
-      if (status === "authenticated" && session?.user?.id) {
-        try {
-          const response = await axios.post(`/api/check-access`);
-          const { hasAccess } = response.data;
-
-          if (hasAccess) {
-            setHasAccess(true);
-            router.push("/bot/dashboard");
-          }
-        } catch (error) {
-          console.error("Error checking user access:", error);
-        }
-      }
-    };
-
-    checkUserAccess();
-  }, [status, session, router]);
-
-  if (hasAccess) {
-    return null; // Render nothing if redirecting to dashboard
-  }
+    // Remove the query parameters to prevent infinite redirect loop
+    const currentParams = new URLSearchParams(window.location.search);
+    if (currentParams.has("showPurchaseModal") || currentParams.has("redirectToCheckout") || currentParams.has("priceId")) {
+      currentParams.delete("showPurchaseModal");
+      currentParams.delete("redirectToCheckout");
+      currentParams.delete("priceId");
+      const newUrl = `${window.location.pathname}?${currentParams.toString()}`;
+      router.replace(newUrl);
+    }
+  }, [searchParams, router]);
 
   return (
     <section className="bg-base-200 overflow-hidden" id="pricing">
@@ -61,18 +43,14 @@ const Pricing = () => {
             <div key={plan.priceId} className="relative w-full max-w-lg">
               {plan.isFeatured && (
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                  <span
-                    className={`badge text-xs text-success-content font-semibold border-0 bg-green-500`}
-                  >
+                  <span className={`badge text-xs text-success-content font-semibold border-0 bg-green-500`}>
                     LAUNCH ONLY OFFER
                   </span>
                 </div>
               )}
 
               {plan.isFeatured && (
-                <div
-                  className={`absolute -inset-[1px] rounded-[9px] bg-green-500 z-10`}
-                ></div>
+                <div className={`absolute -inset-[1px] rounded-[9px] bg-green-500 z-10`}></div>
               )}
 
               <div className="relative flex flex-col h-full gap-5 lg:gap-8 z-10 bg-base-100 p-8 rounded-lg">
