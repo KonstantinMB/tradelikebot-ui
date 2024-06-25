@@ -5,8 +5,6 @@ import { createCheckout } from "@/libs/stripe";
 import connectMongo from "@/libs/mongoose";
 import User from "@/models/User";
 
-// This function is used to create a Stripe Checkout Session
-// By default, it doesn't force users to be authenticated. But if they are, it will prefill the Checkout data with their email and/or credit card
 export async function POST(req: NextRequest) {
   const body = await req.json();
 
@@ -40,13 +38,12 @@ export async function POST(req: NextRequest) {
     const { priceId, mode, successUrl, cancelUrl } = body;
 
     const stripeSessionURL = await createCheckout({
-      priceId,
-      mode,
-      successUrl,
-      cancelUrl,
+      priceId: priceId,
+      mode: mode,
+      successUrl: successUrl,
+      cancelUrl: cancelUrl,
       clientReferenceId: user?._id?.toString(),
-      // If user is logged in, this will automatically prefill Checkout data like email and/or credit card for faster checkout
-      user,
+      user: user,
     });
 
     return NextResponse.json({ url: stripeSessionURL });
