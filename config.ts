@@ -19,8 +19,7 @@ const config = {
           process.env.NODE_ENV === "development"
             ? process.env.NEXT_PUBLIC_STRIPE_CRYPTO_BOT_PRICE_ID_DEV
             : process.env.NEXT_PUBLIC_STRIPE_CRYPTO_BOT_PRICE_ID_PROD,
-        //  REQUIRED - Name of the plan, displayed on the pricing page
-        name: "Starter",
+        name: "Trading Bot Platform",
         // A friendly description of the plan, displayed on the pricing page. Tip: explain why this plan and not others
         description: "Algo trading bot that utilizes the Binance Exchange alongside custom indicators to generate profit for the user.",
         // The price you want to display, the one user will be charged on Stripe.
@@ -30,22 +29,22 @@ const config = {
         isFeatured: true,
         features: [
           {
-            name: "Algo Trading Bot Running In The Cloud", 
+            name: "Platform To Run The Bot 24/7 Without Laptop ON!"
           },
+          {
+            name: "Proven & Tested Crypto Auto Trading Strategy!"
+          }, 
           {
             name: "24/7 Support In Case Of Any Questions / Queries"
           }, 
           {
-            name: "Discord Community Of Like-Minded Individuals"
-          }, 
-          {
-            name: "Ability To Run The Bot 24/7 Without Laptop ON!"
+            name: "Soon -> Community Of Like-Minded Individuals here!"
           }, 
            {
             name: "Support For Up To 6 Different Cryptocurrencies"
           },
           {
-            name: "Integration With Binance"
+            name: "Easy, Quick & Seamless Bot Setup!"
           }, 
         ],
       },

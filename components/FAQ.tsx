@@ -11,20 +11,20 @@ interface FAQItemProps {
 const faqList: FAQItemProps[] = [
   {
     question: "What do I get exactly?",
-    answer: <div className="space-y-2 leading-relaxed">For more detailed list of what you exactly get with each option, go to the `Pricing` page!</div>,
+    answer: <div className="space-y-2 leading-relaxed">Cloud Platform To Run Proven & Tested Crypto Auto Trading Strategy! For more details on what you exactly get, check the `Pricing` page!</div>,
   },
   {
     question: "Can I get a refund?",
     answer: (
       <p>
-        Yes! If you don&apos;t like the product and want your money back, contact me via the deatils in the Footer of the page!
+        Yes! If you don&apos;t like the product and want your money back, contact us via the ChatBot button in the bottom right corner of the app or the Support button in the footer and we will give you your money back!
       </p>
     ),
   },
   {
     question: "I have another question",
     answer: (
-      <div className="space-y-2 leading-relaxed">Cool, contac tour chat bot. We will get to you as soon as possible!</div>
+      <div className="space-y-2 leading-relaxed">Cool, contact our ChatBot in the bottom right. We will get to you as soon as possible!</div>
     ),
   },
 ];

@@ -75,7 +75,7 @@ const Navbar = () => {
             <a className="link no-underline hover:text-slate-100" title="Pricing" onClick={toggleMenu}>Pricing</a>
           </Link>
           <Link href="https://konstantinmb.medium.com/" passHref legacyBehavior>
-            <a className="link no-underline hover:text-slate-100" title="Blogs" onClick={toggleMenu}>Creator's Blog</a>
+            <a className="link no-underline hover:text-slate-100" title="Blogs" onClick={toggleMenu}>Creator&apos;s Blog</a>
           </Link>
         </div>
       </div>
