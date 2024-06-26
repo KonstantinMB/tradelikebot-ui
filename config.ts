@@ -4,7 +4,7 @@ import { ConfigProps } from "./types/config";
 const config = {
   appName: "TradingLikeBot",
   appDescription:
-    "Automate Your Crypto Trading for Maximum Profit. Maximize your profits and minimize risks by leaving emotional decisions behind",
+    "Automate Your Crypto Trading for Maximum Profit. Maximize Your Profits and Minimize Risks by Leaving Emotional Decisions Behind!",
   domainName: process.env.NEXT_PUBLIC_DOMAIN_NAME,
   crisp: {
     id: process.env.NEXT_PUBLIC_CRISP_ID,

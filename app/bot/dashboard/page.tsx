@@ -1,3 +1,4 @@
+// pages/bot/dashboard.tsx
 "use client";
 
 import React, { Suspense, useEffect, useState } from 'react';
@@ -16,45 +17,57 @@ const Dashboard: React.FC = () => {
   const [trades, setTrades] = useState<TradeStatus[]>([]);
 
   const fetchTrades = async () => {
-    const response = await fetch('/api/trade');
-    if (response.ok) {
-      const data: TradeStatus[] = await response.json();
-      setTrades(data);
-      const totalTakeProfitPrice = data.reduce((acc, trade) => acc + trade.take_profit_price, 0);
-      setBotStatus(prevStatus => ({ ...prevStatus, activeTrades: data.length, takeProfitPrice: totalTakeProfitPrice }));
-    } else {
-      console.error('Failed to fetch trades');
+    try {
+      const response = await fetch('/api/trade');
+      if (response.ok) {
+        const data: TradeStatus[] = await response.json();
+        setTrades(data);
+        const totalTakeProfitPrice = data.reduce((acc, trade) => acc + trade.take_profit_price, 0);
+        setBotStatus(prevStatus => ({ ...prevStatus, activeTrades: data.length, takeProfitPrice: totalTakeProfitPrice }));
+      } else {
+        console.error('Failed to fetch trades');
+      }
+    } catch (error) {
+      console.error('Error fetching trades:', error);
     }
   };
 
   const fetchInvestmentStatus = async () => {
-    const session = await getSession();
-    if (!session || !session.user) {
-      console.error("User not authenticated");
-      return;
-    }
+    try {
+      const session = await getSession();
+      if (!session || !session.user) {
+        console.error("User not authenticated");
+        return;
+      }
 
-    const response = await fetch(`/api/bot/status`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ user_id: session.user.id }),
-    });
-    
-    if (response.ok) {
-      const data = await response.json();
-      setBotStatus(prevStatus => ({ ...prevStatus, balance: data.total_investment }));
-    } else {
-      console.error('Failed to fetch investment status');
+      const response = await fetch(`/api/bot/status`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user_id: session.user.id }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setBotStatus(prevStatus => ({ ...prevStatus, balance: data.total_investment }));
+      } else {
+        console.error('Failed to fetch investment status');
+      }
+    } catch (error) {
+      console.error('Error fetching investment status:', error);
     }
   };
 
   useEffect(() => {
     const fetchBotStatus = async () => {
-      const response = await fetch('/api/bot-status');
-      const data = await response.json();
-      setBotStatus(data);
+      try {
+        const response = await fetch('/api/bot-status');
+        const data = await response.json();
+        setBotStatus(data);
+      } catch (error) {
+        console.error('Error fetching bot status:', error);
+      }
     };
 
     fetchBotStatus();

@@ -12,21 +12,45 @@ const Pricing = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  const checkUserAccess = async () => {
+    try {
+      const response = await fetch('/api/check-access', {
+        method: 'POST',
+      });
+  
+      const data = await response.json();
+      return data.hasAccess;
+    } catch (error) {
+      console.error('Error checking user access:', error);
+      return false;
+    }
+  };
+  
   useEffect(() => {
-    // Check if the query param exists to show the modal
-    if (searchParams.get("showPurchaseModal")) {
-      setShowModal(true);
-    }
+    const checkAccessAndRedirect = async () => {
+      const hasAccess = await checkUserAccess();
 
-    // Remove the query parameters to prevent infinite redirect loop
-    const currentParams = new URLSearchParams(window.location.search);
-    if (currentParams.has("showPurchaseModal") || currentParams.has("redirectToCheckout") || currentParams.has("priceId")) {
-      currentParams.delete("showPurchaseModal");
-      currentParams.delete("redirectToCheckout");
-      currentParams.delete("priceId");
-      const newUrl = `${window.location.pathname}?${currentParams.toString()}`;
-      router.replace(newUrl);
-    }
+      if (hasAccess) {
+        router.push('/bot/dashboard');
+      } else {
+        // Check if the query param exists to show the modal
+        if (searchParams.get("showPurchaseModal")) {
+          setShowModal(true);
+        }
+
+        // Remove the query parameters to prevent infinite redirect loop
+        const currentParams = new URLSearchParams(window.location.search);
+        if (currentParams.has("showPurchaseModal") || currentParams.has("redirectToCheckout") || currentParams.has("priceId")) {
+          currentParams.delete("showPurchaseModal");
+          currentParams.delete("redirectToCheckout");
+          currentParams.delete("priceId");
+          const newUrl = `${window.location.pathname}?${currentParams.toString()}`;
+          router.replace(newUrl);
+        }
+      }
+    };
+
+    checkAccessAndRedirect();
   }, [searchParams, router]);
 
   return (

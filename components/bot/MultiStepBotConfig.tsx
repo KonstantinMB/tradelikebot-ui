@@ -102,6 +102,7 @@ const MultiStepBotConfig = ({ onSubmit, onClose }: { onSubmit: (data: any) => vo
           >
             <option value="BTCUSDT">BTCUSDT</option>
             <option value="ETHUSDT">ETHUSDT</option>
+            <option value="BNBUSDT">BNBUSDT</option>
             <option value="SOLUSDT">SOLUSDT</option>
             <option value="MATICUSDT">MATICUSDT</option>
             <option value="DOGEUSDT">DOGEUSDT</option>

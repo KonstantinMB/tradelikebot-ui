@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import type { JSX } from "react";
 import Image from "next/image";
 import proven_strategy from "@/images/proven-strategy.jpg"
+import algo_bot from "@/images/algo-bot.jpg";
 
 interface Feature {
   title: string;
@@ -17,9 +18,9 @@ interface Feature {
 
 const features = [
   {
-    title: "Algo Bot",
+    title: "Quick & Easy Setup",
     description:
-      "A bot that automatically does all trading for you, leaving emotions out the window!",
+      "Run your trading bot in minutes!",
     type: "video",
     path: "",
     format: "video/webm",
@@ -34,7 +35,41 @@ const features = [
       >
         <path
           strokeLinecap="round"
-          d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25"
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Algo Bot",
+    description:
+      "A bot that automatically does all trading for you, leaving emotions out the window!",
+    type: "image",
+    path: proven_strategy,
+    alt: "A well-tested Binance crypto trading bot!",
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3 3h18v18H3z"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M7 14l3-3 2 2 4-4"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M7 10h0.01"
         />
       </svg>
     ),
@@ -44,7 +79,7 @@ const features = [
     description:
       "Our trading strategy has been proven both via backtesting and live trading! The bot uses different indicators & techincal analysis to determine it's next move!",
     type: "image",
-    path: proven_strategy,
+    path: algo_bot,
     alt: "A proven trading strategy",
     svg: (
       <svg

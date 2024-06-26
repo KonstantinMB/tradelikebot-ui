@@ -54,8 +54,8 @@ const Footer = () => {
                 <Link href="/#pricing" className="link link-hover">
                   Pricing
                 </Link>
-                <Link href="/blog" className="link link-hover">
-                  Blog
+                <Link href="https://konstantinmb.medium.com/" className="link link-hover">
+                  Creator's Blog
                 </Link>
               </div>
             </div>

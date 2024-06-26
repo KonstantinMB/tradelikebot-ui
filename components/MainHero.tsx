@@ -1,17 +1,43 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import TestimonialsAvatars from '@/components/TestimonialsAvatars';
 import landing_image from '@/images/landing-page-pic.jpg';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 
+const checkUserAccess = async () => {
+  try {
+    const response = await fetch('/api/check-access', {
+      method: 'POST',
+    });
+
+    const data = await response.json();
+    return data.hasAccess;
+  } catch (error) {
+    console.error('Error checking user access:', error);
+    return false;
+  }
+};
+
 const MainHero = () => {
   const { data: session, status } = useSession();
+  const [hasAccess, setHasAccess] = useState(false);
 
-  const buttonLabel = status === 'authenticated' ? 'Check Dashboard' : 'Start Trading';
-  const buttonHref = status === 'authenticated' ? '/bot/dashboard' : '/pricing';
+  useEffect(() => {
+    const fetchAccess = async () => {
+      if (status === 'authenticated') {
+        const access = await checkUserAccess();
+        setHasAccess(access);
+      }
+    };
+
+    fetchAccess();
+  }, [status]);
+
+  const buttonLabel = hasAccess ? 'Check Dashboard' : 'Start Trading';
+  const buttonHref = hasAccess ? '/bot/dashboard' : '/pricing';
 
   return (
     <section className="max-w-screen-2xl mx-auto px-6 sm:px-8 flex flex-col lg:flex-row justify-between gap-16 lg:gap-20 pt-12 pb-10 sm:pt-10 lg:pb-20">
