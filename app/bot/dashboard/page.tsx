@@ -12,6 +12,8 @@ import { getSession } from 'next-auth/react';
 import { renderSchemaTags } from '@/libs/seo';
 import { TradeStatus } from '@/types/types';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_PYTHON_BACKEND_URL;
+
 const Dashboard: React.FC = () => {
   const [botStatus, setBotStatus] = useState({ balance: 0, activeTrades: 0, profitLoss: 0, takeProfitPrice: 0 });
   const [trades, setTrades] = useState<TradeStatus[]>([]);
@@ -40,7 +42,7 @@ const Dashboard: React.FC = () => {
         return;
       }
 
-      const response = await fetch(`/api/bot/status`, {
+      const response = await fetch(`${API_BASE_URL}/api/bot/status`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,17 +62,6 @@ const Dashboard: React.FC = () => {
   };
 
   useEffect(() => {
-    const fetchBotStatus = async () => {
-      try {
-        const response = await fetch('/api/bot-status');
-        const data = await response.json();
-        setBotStatus(data);
-      } catch (error) {
-        console.error('Error fetching bot status:', error);
-      }
-    };
-
-    fetchBotStatus();
     fetchTrades();
     fetchInvestmentStatus();
   }, []);

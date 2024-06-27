@@ -76,8 +76,8 @@ const BotExecutor: React.FC<BotExecutorProps> = ({ activeTrades, fetchTrades, fe
           setIsRunning(true);
           setShowModal(false);
           
-          await fetchTrades();
-          await fetchInvestmentStatus();
+          fetchTrades();
+          fetchInvestmentStatus();
 
         } else {
           console.error('Failed to create user task');
