@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import toJSON from "./plugins/toJSON";
 
+const collection_db_name = process.env.DB_ENV === "prod" ? "prod_tradelikebot_db" : "test_tradelikebot_db";
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -51,6 +53,7 @@ const userSchema = new mongoose.Schema(
   {
     timestamps: true,
     toJSON: { virtuals: true },
+    collection: collection_db_name,
   }
 );
 

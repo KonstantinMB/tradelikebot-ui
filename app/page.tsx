@@ -7,6 +7,7 @@ import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import BigStatementHero from "@/components/BigStatementHero";
 import MainHero from "@/components/MainHero";
+import CreatorIntro from "@/components/CreatorIntro";
 
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
         <BigStatementHero />
         <FeaturesAccordion />
         <CTA />
+        <CreatorIntro />
         <FAQ />
       </main>
       <Footer />
