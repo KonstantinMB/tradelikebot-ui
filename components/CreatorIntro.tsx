@@ -28,10 +28,10 @@ const Testimonial = () => {
             <div>
               <blockquote className="text-xl font-medium leading-8 text-base-content sm:text-2xl sm:leading-10">
                 Hey there!
-                I've worked on developing trading bots for the past few years!
-                With all the knowledge and experience gained I decided to create TradeLikeBot -
+                I&apos;ve worked on developing trading bots for the past few years!
+                With all the knowledge and experience gained I decided to create <b className="underline decoration-emerald-500">TradeLikeBot</b> -
                 A platform where anyone can leverage the trading bot (soon botS)
-                I've developed over the years to generate side income!<br />
+                I&apos;ve developed over the years to <b className="underline decoration-pink-500">generate side income!</b><br />
                 ____________
               </blockquote>
               <blockquote className="text-xl font-medium leading-8 text-base-content sm:text-2xl sm:leading-10">Hope you enjoy it!</blockquote>
