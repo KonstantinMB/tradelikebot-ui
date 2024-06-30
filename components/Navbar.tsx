@@ -1,12 +1,44 @@
 "use client";
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import logo from '@/images/logo.png';
-import ButtonAccount from './ButtonAccount';
+
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import logo from "@/images/logo.png";
+import ButtonAccount from "./ButtonAccount";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [pricingDashboard, setPricingDashboard] = useState("/pricing");
+  const [pricingDashboardText, setPricingDashboardText] = useState("Pricing");
+
+  const checkUserAccess = async () => {
+    try {
+      const response = await fetch('/api/check-access', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      const data = await response.json();
+      return data.hasAccess;
+    } catch (error) {
+      console.error('Error checking user access:', error);
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    const handleRedirect = async () => {
+      const hasAccess = await checkUserAccess();
+      if (hasAccess) {
+        setPricingDashboard("/bot/dashboard");
+        setPricingDashboardText("Dashboard");
+      }
+    };
+
+    handleRedirect();
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -71,8 +103,8 @@ const Navbar = () => {
           <Link href="/#features" passHref legacyBehavior>
             <a className="link no-underline hover:text-slate-100" title="Features" onClick={toggleMenu}>Features</a>
           </Link>
-          <Link href="/pricing" passHref legacyBehavior>
-            <a className="link no-underline hover:text-slate-100" title="Pricing" onClick={toggleMenu}>Pricing</a>
+          <Link href={pricingDashboard} passHref legacyBehavior>
+            <a className="link no-underline hover:text-slate-100" title="Pricing" onClick={toggleMenu}>{pricingDashboardText}</a>
           </Link>
           <Link href="https://konstantinmb.medium.com/" passHref legacyBehavior>
             <a className="link no-underline hover:text-slate-100" title="Blogs" onClick={toggleMenu}>Creator&apos;s Blog</a>

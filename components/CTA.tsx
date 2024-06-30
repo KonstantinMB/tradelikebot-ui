@@ -1,7 +1,5 @@
-import config from "@/config";
 import Image from "next/image";
 import cta_image from "@/images/cta-page.jpg";
-import ButtonLead from "./ButtonLead";
 import Link from "next/link";
 
 const CTA = () => {
