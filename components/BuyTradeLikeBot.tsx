@@ -7,6 +7,23 @@ import { useRouter, useSearchParams } from "next/navigation";
 import config from "@/config";
 import AuthModal from "./AuthModal";
 
+const checkUserAccess = async () => {
+  try {
+    const response = await fetch('/api/check-access', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await response.json();
+    return data.hasAccess;
+  } catch (error) {
+    console.error('Error checking user access:', error);
+    return false;
+  }
+};
+
 const BuyTradeLikeBot = ({
   text = "Get started",
   extraStyle,
@@ -25,13 +42,22 @@ const BuyTradeLikeBot = ({
   const savedPriceId = searchParams.get("priceId");
   const successUrl =
     process.env.NODE_ENV === "development"
-      ? "http://" + config.domainName + "/bot/dashboard"
-      : "https://" + config.domainName + "/bot/dashboard";
+      ? `http://${config.domainName}/bot/dashboard`
+      : `https://${config.domainName}/bot/dashboard`;
 
   useEffect(() => {
-    if (status === "authenticated" && redirectToCheckout && savedPriceId) {
-      handlePayment("payment", savedPriceId);
-    }
+    const handleRedirect = async () => {
+      if (status === "authenticated" && redirectToCheckout && savedPriceId) {
+        const hasAccess = await checkUserAccess();
+        if (hasAccess) {
+          router.push("/bot/dashboard");
+        } else {
+          await handlePayment("payment", savedPriceId);
+        }
+      }
+    };
+
+    handleRedirect();
   }, [status, redirectToCheckout, savedPriceId]);
 
   const handlePayment = async (mode: string, priceId: string) => {
@@ -57,7 +83,12 @@ const BuyTradeLikeBot = ({
 
   const handleClick = async () => {
     if (status === "authenticated") {
-      await handlePayment("payment", priceId);
+      const hasAccess = await checkUserAccess();
+      if (hasAccess) {
+        router.push("/bot/dashboard");
+      } else {
+        await handlePayment("payment", priceId);
+      }
     } else {
       setIsModalOpen(true);
     }
