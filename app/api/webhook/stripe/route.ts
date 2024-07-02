@@ -18,11 +18,14 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 export async function POST(req: NextRequest) {
   await connectMongo();
 
-  const body = await req.clone().text();
-  const signature = headers().get("stripe-signature");
+  const body = await req.text();
 
+  const signature = headers().get("stripe-signature");
+  
+  let eventType;
   let event;
 
+  // verify Stripe event is legit
   try {
     event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
   } catch (err) {
@@ -30,7 +33,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: err.message }, { status: 400 });
   }
 
-  const eventType = event.type;
+  eventType = event.type;
+
   try {
     switch (eventType) {
       case "checkout.session.completed": {
