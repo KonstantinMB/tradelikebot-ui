@@ -269,7 +269,7 @@ const Pricing = () => {
                   <FreeBuyTradeLikeBot />
                 </div>
                 <p className="flex items-center pt-2 justify-center gap-2 text-sm text-center text-base-content/80 font-medium relative">
-                  Don't Wait. Try It Out Know! 👀
+                  Don&apos;t Wait. Try It Out Know! 👀
                 </p>
               </div>
             </div>

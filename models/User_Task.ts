@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 import toJSON from "./plugins/toJSON";
+import { getDbName } from "@/libs/mongo";
+
+const dbName = getDbName();
 
 const userTaskSchema = new mongoose.Schema(
   {
@@ -11,7 +14,8 @@ const userTaskSchema = new mongoose.Schema(
     }
   },
   {
-    toJSON: { virtuals: true }
+    toJSON: { virtuals: true },
+    collection: `${dbName}`,
   }
 );
 
