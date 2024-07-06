@@ -59,7 +59,6 @@ export const createCheckout = async ({
     const stripeSession = await stripe.checkout.sessions.create({
       payment_method_types: ['card'], 
       mode,
-      allow_promotion_codes: true,
       client_reference_id: clientReferenceId,
       line_items: [
         {

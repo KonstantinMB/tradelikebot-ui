@@ -19,33 +19,29 @@ const config = {
           process.env.NODE_ENV === "development"
             ? process.env.NEXT_PUBLIC_STRIPE_CRYPTO_BOT_PRICE_ID_DEV
             : process.env.NEXT_PUBLIC_STRIPE_CRYPTO_BOT_PRICE_ID_PROD,
-        name: "Trading Bot Platform",
+        name: "Support My Work",
         // A friendly description of the plan, displayed on the pricing page. Tip: explain why this plan and not others
-        description: "Algo trading bot that utilizes the Binance Exchange alongside custom indicators to generate profit for the user.",
+        description: "Donate if you wanna help me out to continue working on my skills in trading bot development! ",
         // The price you want to display, the one user will be charged on Stripe.
-        price: 20,
-        // If you have an anchor price (i.e. $29) that you want to display crossed out, put it here. Otherwise, leave it empty
-        priceAnchor: 100,
+        price: "🫵",
+        priceAnchor: null,
         isFeatured: true,
         features: [
           {
-            name: "Platform To Run The Bot 24/7 Without Laptop ON!"
+            name: "You Set The Amount Of The Donation 🙏"
           },
           {
-            name: "Proven & Tested Crypto Auto Trading Strategy!"
-          }, 
-          {
-            name: "24/7 Support In Case Of Any Questions / Queries"
-          }, 
-          {
-            name: "Soon -> Community Of Like-Minded Individuals here!"
-          }, 
-           {
-            name: "Support For Up To 6 Different Cryptocurrencies"
+            name: "Expect More Contribution To The Platform"
           },
           {
-            name: "Easy, Quick & Seamless Bot Setup!"
+            name: "More Blogs Around The Topic Of Programming Trading Bots"
           }, 
+          {
+            name: "Adding Bots Based On User Risk Tollerance"
+          }, 
+          {
+            name: "In-App Community Place To Share Ideas & Results!"
+          }
         ],
       },
     ],

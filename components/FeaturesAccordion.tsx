@@ -25,7 +25,7 @@ const features = [
     path: proven_strategy,
     alt: "A well-tested Binance crypto trading bot!",
     svg: (
-      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-robot"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 4m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /><path d="M12 2v2" /><path d="M9 12v9" /><path d="M15 12v9" /><path d="M5 16l4 -2" /><path d="M15 14l4 2" /><path d="M9 18h6" /><path d="M10 8v.01" /><path d="M14 8v.01" /></svg>
+      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  strokeLinecap="round"  strokeLinejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-robot"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 4m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z" /><path d="M12 2v2" /><path d="M9 12v9" /><path d="M15 12v9" /><path d="M5 16l4 -2" /><path d="M15 14l4 2" /><path d="M9 18h6" /><path d="M10 8v.01" /><path d="M14 8v.01" /></svg>
     ),
   },
   {
@@ -33,8 +33,8 @@ const features = [
     description:
       "Run your trading bot in seconds upon sign-up!",
     svg: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
       </svg>
     ),
   },
@@ -54,7 +54,7 @@ const features = [
     description:
       "The bot is integrated directly with your Binance account, giving you the freedom to utilize the platform for monitoring, manual intervantion & analysis on the bots behaviour!",
     svg: (
-      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-brand-binance"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 8l2 2l4 -4l4 4l2 -2l-6 -6z" /><path d="M6 16l2 -2l4 4l3.5 -3.5l2 2l-5.5 5.5z" /><path d="M20 10l2 2l-2 2l-2 -2z" /><path d="M4 10l2 2l-2 2l-2 -2z" /><path d="M12 10l2 2l-2 2l-2 -2z" /></svg>
+      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-brand-binance"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 8l2 2l4 -4l4 4l2 -2l-6 -6z" /><path d="M6 16l2 -2l4 4l3.5 -3.5l2 2l-5.5 5.5z" /><path d="M20 10l2 2l-2 2l-2 -2z" /><path d="M4 10l2 2l-2 2l-2 -2z" /><path d="M12 10l2 2l-2 2l-2 -2z" /></svg>
     ),
   },
   {

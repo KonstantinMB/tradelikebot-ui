@@ -10,7 +10,7 @@ export async function POST() {
 
     const session = await getServerSession(authOptions);
     if (!session) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ hasAccess: false }, { status: 401 });
     }
 
     await connectMongo();
@@ -19,8 +19,8 @@ export async function POST() {
     const user = await User.findById(session.user.id);
 
     // Check if user has access
-    if (user && user.hasAccess) {
-      return NextResponse.json({ hasAccess: true }, { status: 200 });
+    if (user) {
+      return NextResponse.json({ hasAccess: user.hasAccess }, { status: 200 });
     }
 
     

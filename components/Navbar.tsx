@@ -23,7 +23,6 @@ const Navbar = () => {
       const data = await response.json();
       return data.hasAccess;
     } catch (error) {
-      console.error('Error checking user access:', error);
       return false;
     }
   };

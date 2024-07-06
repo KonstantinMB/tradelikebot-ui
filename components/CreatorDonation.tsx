@@ -7,25 +7,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import config from "@/config";
 import AuthModal from "./AuthModal";
 
-const checkUserAccess = async () => {
-  try {
-    const response = await fetch('/api/check-access', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const data = await response.json();
-    return data.hasAccess;
-  } catch (error) {
-    console.error('Error checking user access:', error);
-    return false;
-  }
-};
-
-const BuyTradeLikeBot = ({
-  text = "Get started",
+const CreatorDonation = ({
+  text = "Donate",
   extraStyle,
   priceId,
 }: {
@@ -45,19 +28,15 @@ const BuyTradeLikeBot = ({
       ? `http://${config.domainName}/bot/dashboard`
       : `https://${config.domainName}/bot/dashboard`;
 
-  useEffect(() => {
-    const handleRedirect = async () => {
-      if (status === "authenticated" && redirectToCheckout && savedPriceId) {
-        const hasAccess = await checkUserAccess();
-        if (hasAccess) {
-          router.push("/bot/dashboard");
-        } else {
-          await handlePayment("payment", savedPriceId);
-        }
-      }
-    };
+  const cancelUrl =
+      process.env.NODE_ENV === "development"
+        ? `http://${config.domainName}/pricing`
+        : `https://${config.domainName}/pricing`;
 
-    handleRedirect();
+  useEffect(() => {
+    if (status === "authenticated" && redirectToCheckout && savedPriceId) {
+      handlePayment("payment", savedPriceId);
+    }
   }, [status, redirectToCheckout, savedPriceId]);
 
   const handlePayment = async (mode: string, priceId: string) => {
@@ -69,7 +48,7 @@ const BuyTradeLikeBot = ({
         {
           priceId,
           successUrl: successUrl,
-          cancelUrl: window.location.href,
+          cancelUrl: cancelUrl,
           mode: mode,
         }
       );
@@ -83,12 +62,7 @@ const BuyTradeLikeBot = ({
 
   const handleClick = async () => {
     if (status === "authenticated") {
-      const hasAccess = await checkUserAccess();
-      if (hasAccess) {
-        router.push("/bot/dashboard");
-      } else {
-        await handlePayment("payment", priceId);
-      }
+      await handlePayment("payment", priceId);
     } else {
       setIsModalOpen(true);
     }
@@ -112,4 +86,4 @@ const BuyTradeLikeBot = ({
   );
 };
 
-export default BuyTradeLikeBot;
+export default CreatorDonation;

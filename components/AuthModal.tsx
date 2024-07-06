@@ -10,12 +10,20 @@ import config from "@/config";
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
-  priceId: string;
+  priceId?: string;
 }
 
 const AuthModal = ({ isOpen, onClose, priceId }: AuthModalProps) => {
   const handleSignIn = () => {
-    const callbackUrl = `${window.location.origin}/pricing?redirectToCheckout=true&priceId=${priceId}`;
+
+    let callbackUrl = "/";
+    
+    if (priceId === null || priceId === undefined) {
+      callbackUrl = `${window.location.origin}/pricing`;
+    } else {
+      callbackUrl = `${window.location.origin}/pricing?redirectToCheckout=true&priceId=${priceId}`;
+    }
+
     signIn("google", { callbackUrl });
   };
   return (

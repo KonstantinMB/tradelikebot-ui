@@ -1,35 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import ButtonAccount from "./ButtonAccount";
 import logo from "@/images/logo.png";
 import config from "@/config";
-
-const links = [
-  {
-    href: "https://www.binance.com/en",
-    label: "Binance Portal",
-  },
-  {
-    href: "/#bot-faq",
-    label: "FAQ",
-  },
-  {
-    href: "https://www.binance.com/en/event/new_user_guide",
-    label: "How to Register and Deposit",
-  },
-];
+import CreatorDonation from "./CreatorDonation";
 
 const MembersNavbar = () => {
-  const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [searchParams]);
+  const priceId = process.env.NODE_ENV === "development" 
+                  ? process.env.NEXT_PUBLIC_STRIPE_CRYPTO_BOT_PRICE_ID_DEV 
+                  : process.env.NEXT_PUBLIC_STRIPE_CRYPTO_BOT_PRICE_ID_PROD
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -91,13 +74,13 @@ const MembersNavbar = () => {
           </button>
         </div>
         <div className="flex flex-col lg:flex-row items-center gap-8 p-8 lg:p-0 lg:flex-1 lg:justify-center">
-          {links.map((link) => (
-            <Link href={link.href} key={link.href} passHref legacyBehavior>
-              <a className="link no-underline hover:text-slate-100" title={link.label} onClick={toggleMenu}>
-                {link.label}
-              </a>
-            </Link>
-          ))}
+          <Link href="/#features" passHref legacyBehavior>
+            <a className="link no-underline hover:text-slate-100" title="Features" onClick={toggleMenu}>Features</a>
+          </Link>
+          <Link href="https://konstantinmb.medium.com/" passHref legacyBehavior>
+            <a className="link no-underline hover:text-slate-100" title="Blogs" onClick={toggleMenu}>Creator&apos;s Blog</a>
+          </Link>
+          <CreatorDonation priceId={priceId} text="Donate" extraStyle="btn btn-primary"/>
         </div>
       </div>
       <div className="hidden lg:flex lg:justify-end lg:flex-1">
