@@ -1,8 +1,5 @@
 import mongoose from "mongoose";
 import toJSON from "./plugins/toJSON";
-import { getDbName } from "@/libs/mongo";
-
-const dbName = getDbName();
 
 const userSchema = new mongoose.Schema(
   {
@@ -53,8 +50,7 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    toJSON: { virtuals: true },
-    collection: `${dbName}`,
+    toJSON: { virtuals: true }
   }
 );
 

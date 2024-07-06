@@ -12,7 +12,7 @@ export async function POST() {
 
     await connectMongo();
 
-    const user = await User.findById(session?.user?.id);
+    const user = await User.findById(session.user.id);
 
     if (user) {
       user.hasAccess = true;

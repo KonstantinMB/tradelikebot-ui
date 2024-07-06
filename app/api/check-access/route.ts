@@ -10,7 +10,7 @@ export async function POST() {
 
     const session = await getServerSession(authOptions);
     if (!session) {
-      return NextResponse.json({ hasAccess: false }, { status: 401 });
+      return NextResponse.json({ hasAccess: false }, { status: 200 });
     }
 
     await connectMongo();
