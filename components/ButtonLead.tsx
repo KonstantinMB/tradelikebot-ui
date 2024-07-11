@@ -46,27 +46,17 @@ const ButtonLead = ({ extraStyle }: { extraStyle?: string }) => {
       />
 
       <button
-        className="btn btn-gradient-green btn-block"
+        className="btn btn-gradient-green btn-block group"
         type="submit"
         disabled={isDisabled}
       >
-        Join waitlist
         {isLoading ? (
           <span className="loading loading-spinner loading-xs"></span>
         ) : (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-5 h-5"
-          >
-            <path
-              fillRule="evenodd"
-              d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"  className="w-8 h-8 fill-primary-content group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-200"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12l3 0" /><path d="M12 3l0 3" /><path d="M7.8 7.8l-2.2 -2.2" /><path d="M16.2 7.8l2.2 -2.2" /><path d="M7.8 16.2l-2.2 2.2" /><path d="M12 12l9 3l-4 2l-2 4l-3 -9" /></svg>
+
         )}
+         Join waitlist
       </button>
     </form>
   );

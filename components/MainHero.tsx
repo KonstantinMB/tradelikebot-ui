@@ -1,43 +1,8 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import TestimonialsAvatars from '@/components/TestimonialsAvatars';
 import landing_image from '@/images/landing-page-pic.jpg';
-import Link from 'next/link';
-import { useSession } from 'next-auth/react';
-
-const checkUserAccess = async () => {
-  try {
-    const response = await fetch('/api/check-access', {
-      method: 'POST',
-    });
-
-    const data = await response.json();
-    return data.hasAccess;
-  } catch (error) {
-    console.error('Error checking user access:', error);
-    return false;
-  }
-};
+import ButtonLead from './ButtonLead';
 
 const MainHero = () => {
-  const { data: session, status } = useSession();
-  const [hasAccess, setHasAccess] = useState(false);
-
-  useEffect(() => {
-    const fetchAccess = async () => {
-      if (status === 'authenticated') {
-        const access = await checkUserAccess();
-        setHasAccess(access);
-      }
-    };
-
-    fetchAccess();
-  }, [status]);
-
-  const buttonLabel = hasAccess ? 'Check Dashboard' : 'Start Trading';
-  const buttonHref = hasAccess ? '/bot/dashboard' : '/pricing';
 
   return (
     <section className="max-w-screen-2xl mx-auto px-6 sm:px-8 flex flex-col lg:flex-row justify-between gap-16 lg:gap-20 pt-12 pb-10 sm:pt-10 lg:pb-20">
@@ -51,13 +16,11 @@ const MainHero = () => {
           The easiest way to run & monitor your trading bot. Leave the emotions out of your way!
         </p>
         <div className="flex flex-col lg:flex-row items-center gap-4">
-          <Link href={buttonHref} passHref>
-            <button className="btn btn-gradient-green btn-wide group">
-            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"  className="w-8 h-8 fill-primary-content group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-200"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12l3 0" /><path d="M12 3l0 3" /><path d="M7.8 7.8l-2.2 -2.2" /><path d="M16.2 7.8l2.2 -2.2" /><path d="M7.8 16.2l-2.2 2.2" /><path d="M12 12l9 3l-4 2l-2 4l-3 -9" /></svg>
-            {buttonLabel}
-            </button>
-          </Link>
+          <ButtonLead extraStyle="mt-4 lg:mt-0" />
           <div className="flex flex-col items-center lg:flex-row lg:items-center gap-2">
+            <p className="text-sm md:text-base text-center lg:text-left lg:ml-4">
+              👈  Add your email to get notified when we go fully live!
+            </p>
             <div className="text-sm md:text-base flex items-center gap-2">
               <div className="component-iconify text-green-500" style={{ width: 20, height: 20 }}>
                 <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" className="iconify iconify--mingcute" width="20" height="20" viewBox="0 0 24 24">
@@ -68,10 +31,9 @@ const MainHero = () => {
                 </svg>
               </div>
               <span>
-                <span className="text-green-500">-100% off</span> for the first 100 customers <u>forever</u>
+                <span className="text-green-500">-100% off</span> for the first 15 customers <u>forever</u>
               </span>
             </div>
-            <TestimonialsAvatars />
           </div>
         </div>
       </div>
@@ -79,9 +41,8 @@ const MainHero = () => {
         <Image
           alt="Profits Up"
           src={landing_image}
-          layout="fill"
-          objectFit="cover"
-          className="rounded-xl sm:rounded-2xl"
+          fill
+          className="rounded-xl sm:rounded-2xl object-cover"
         />
       </div>
     </section>

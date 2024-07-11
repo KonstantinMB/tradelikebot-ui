@@ -15,11 +15,12 @@ const CTA = () => {
       <div className="relative hero-content text-center text-neutral-content p-8">
         <div className="flex flex-col items-center max-w-xl p-8 md:p-0">
           <h2 className="font-bold text-3xl md:text-5xl tracking-tight mb-8 md:mb-12">
-          What are you waiting for?
+          Wanna try it out now?
           </h2>
             <p className="text-lg opacity-80 mb-12 md:mb-16">
-                Stop wasting time & money, utilize the power of <b className="underline decoration-emerald-500">TradeLikeBot</b> and 
-                <b className="underline decoration-pink-500"> easily</b> earn from trading!
+            <b className="text-emerald-500">Sign In & Have a Look at the MVP Version of the Platform! </b>
+                Stop Wasting Time & Money, Utilize the Power of <b className="underline decoration-emerald-500">TradeLikeBot</b> and 
+                <b className="underline decoration-pink-500"> Easily</b> Earn from Trading!
             </p>
             <Link href="/pricing" passHref>
             <button className="btn btn-gradient-green btn-wide group">

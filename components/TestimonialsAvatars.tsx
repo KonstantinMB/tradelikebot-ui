@@ -6,14 +6,6 @@ const avatars: {
 }[] = [
   {
     alt: "User",
-    src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3276&q=80",
-  },
-  {
-    alt: "User",
-    src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-  },
-  {
-    alt: "User",
     src: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
   },
   {
@@ -32,7 +24,7 @@ const TestimonialsAvatars = ({ priority }: { priority?: boolean }) => {
       {/* AVATARS */}
       <div className={`-space-x-5 avatar-group justy-start`}>
         {avatars.map((image, i) => (
-          <div className="avatar w-12 h-12" key={i}>
+          <div className="avatar w-15 h-15" key={i}>
             <Image
               src={image.src}
               alt={image.alt}
@@ -65,7 +57,7 @@ const TestimonialsAvatars = ({ priority }: { priority?: boolean }) => {
         </div>
 
         <div className="text-base text-base-content/80">
-          <span className="font-semibold text-base-content">23</span> people have 
+          <span className="font-semibold text-base-content">10</span> people have already
           used or use the bot!
         </div>
       </div>
