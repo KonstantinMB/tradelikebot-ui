@@ -34,48 +34,66 @@ const PrivacyPolicy = () => {
           className="leading-relaxed whitespace-pre-wrap"
           style={{ fontFamily: "sans-serif" }}
         >
-          {`Privacy Policy
-
-Effective Date: June 2, 2024
+          {`Privacy Policy for TradeLikeBot
+Last updated: 15th July 2024
 
 Introduction
-
-Welcome to TradeLikeBot. We are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner. This Privacy Policy outlines how we collect, use, and protect your information.
+Welcome to TradeLikeBot! Your privacy is important to us. This privacy policy explains how we collect, use, disclose, and safeguard your information when you use our website, mobile application, and related services (collectively, the "Service"). By using the Service, you agree to the collection and use of information in accordance with this policy.
 
 Information We Collect
-
-Personal Data: We collect the following personal information:
+Personal Information
+When you register or use our Service, we may collect personal information that can be used to identify you, including but not limited to:
 
 Name
-Email
+Email address
+API keys and secrets (encrypted)
+Profile picture
+Trading data and preferences
 Payment information
-API Keys/Secrets to access Brokerage account
+Non-Personal Information
+We may also collect non-personal information about your interactions with our Service, including:
 
-Non-Personal Data: We collect non-personal data through web cookies to enhance user experience.
+Usage data (e.g., pages visited, time spent on pages)
+Device information (e.g., IP address, browser type, operating system)
+How We Use Your Information
+We use the information we collect for various purposes, including:
 
-Purpose of Data Collection
+To provide, maintain, and improve our Service
+To personalize your experience
+To process transactions and manage your account
+To communicate with you, including sending updates and promotional materials
+To monitor and analyze usage and trends to improve your experience
+To prevent fraudulent transactions and ensure the security of our Service
+Sharing Your Information
+We may share your information with third parties in the following situations:
 
-The data we collect is used for order processing and to provide our services efficiently.
+With service providers who perform services on our behalf (e.g., payment processing, data analysis)
+To comply with legal obligations or respond to lawful requests from public authorities
+To protect and defend our rights or property, or the safety of our users or the public
+In connection with a business transaction, such as a merger or acquisition
+Data Security
+We implement a variety of security measures to maintain the safety of your personal information. All sensitive information is encrypted and transmitted securely. However, no method of transmission over the Internet or method of electronic storage is 100% secure, and we cannot guarantee its absolute security.
 
-Data Sharing
+Your Rights
+Depending on your location, you may have the following rights regarding your personal information:
 
-We do not share your personal information with any third parties.
+The right to access, update, or delete your personal information
+The right to object to or restrict the processing of your personal information
+The right to data portability
+The right to withdraw consent at any time
+To exercise these rights, please contact us using the contact information provided below.
 
-Children’s Privacy
+Third-Party Links
+Our Service may contain links to third-party websites or services that are not operated by us. We are not responsible for the privacy practices or the content of these third-party sites.
 
-TradeLikeBot does not knowingly collect any personal information from children.
-
-Updates to the Privacy Policy
-
-We may update this Privacy Policy from time to time. Users will be notified of any changes via email.
+Changes to This Privacy Policy
+We may update our privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on this page. You are advised to review this privacy policy periodically for any changes.
 
 Contact Us
+If you have any questions about this privacy policy or our data practices, please contact us at:
 
-If you have any questions about this Privacy Policy, please contact us at: mail@tradelikebot.com
-
-Conclusion
-
-Thank you for using TradeLikeBot. Your privacy and trust are important to us.`}
+TradeLikeBot
+Email: konstantin.borimechkov14@gmail.com`}
         </pre>
       </div>
     </main>
